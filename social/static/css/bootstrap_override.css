@@ -1,0 +1,23 @@
+.brand{
+    color: #FFFFFF;
+    text-shadow : none;
+}
+
+.navbar .brand {
+    color: #FFFFFF;
+    /*text-shadow : none;*/
+
+text-shadow: 0 1px 0 1px    #ffffff;
+}
+
+.navbar-inner {
+    background-image: none;
+    background-color: #5BA4CE;
+
+}
+
+.navbar .nav > li > a {
+    color: #FFFFFF;
+    text-shadow:none;
+
+}

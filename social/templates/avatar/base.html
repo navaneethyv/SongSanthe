@@ -1,0 +1,36 @@
+{% extends "site_base.html" %}
+{% load metron_tags %}
+
+
+{% load i18n %}
+{% load staticfiles %}
+
+{% load avatar_tags %}
+
+    <head>
+
+        <title>{% block title %}django-avatar{% endblock %}</title>
+    </head>
+
+{% block body %}
+
+
+        {% block content %}
+       
+
+
+        {% endblock %}
+
+{% endblock%}
+
+{% block extra_body_base %}
+   {% block extra_body %} 
+
+        <link href="{{ STATIC_URL}}css/basic.css" rel="stylesheet">
+        <link href="{{ STATIC_URL}}css/bootstrap_override.css" rel="stylesheet">
+        <link href="{{ STATIC_URL}}css/feeder.css" rel="stylesheet">
+
+        {% include "_modal_base.html" %}
+
+    {% endblock %}
+{% endblock %}

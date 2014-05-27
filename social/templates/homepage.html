@@ -1,0 +1,88 @@
+{% extends "banner_base.html" %}
+
+{% load i18n %}
+{% load staticfiles %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block banner %}
+
+<link href="{{ STATIC_URL}}css/basic.css" rel="stylesheet">
+<link href="{{ STATIC_URL}}css/bootstrap_override.css" rel="stylesheet">
+
+<style>
+/* Prevents slides from flashing */
+.carousel-caption {
+background:rgba(255,255,255,0.5);
+}
+
+p.lead
+{
+    color: black;
+}
+.carousel .item {
+        height: 500px;
+}
+
+.hero-unit{
+  /*height: 450px;*/
+}
+
+
+</style>
+
+<!-- Carousel
+================================================== -->
+<div id="myCarousel" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="{{ STATIC_URL }}images/writer_smaller.jpg" alt="">
+      <div class="container">
+        <div class="carousel-caption">
+          <h2>Write.</h2>
+          <p class="lead">Craft out great lyrics and share it.</p>
+          <a style='margin-top:10px;'class="btn btn-primary" href="#">Sign up today</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="{{ STATIC_URL }}images/band_smaller.jpg" alt="">
+      <div class="container">
+        <div class="carousel-caption">
+          <h2>Create.</h2>
+          <p class="lead">Create your own music and show the world.</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="{{ STATIC_URL }}images/relax_music_smaller.jpg" alt="">
+      <div class="container">
+        <div class="carousel-caption">
+          <h2>Listen.</h2>
+          <p class="lead">Listen to fresh music from emerging talents across the world</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="{{ STATIC_URL }}images/audience_smaller.jpg" alt="">
+      <div class="container">
+        <div class="carousel-caption">
+          <h2>Reach.</h2>
+          <p class="lead"> Reach the world through music. People will love you!!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div><!-- /.carousel -->
+
+    <p>
+        {% blocktrans %}
+         Sign in to take a look at great lyrics and phenomenal compositions!
+        {% endblocktrans %}
+    </p>
+    
+{% endblock %}

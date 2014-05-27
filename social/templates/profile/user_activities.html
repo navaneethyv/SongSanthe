@@ -1,0 +1,187 @@
+{% extends "site_base.html" %}
+
+{% load metron_tags %}
+
+
+{% load i18n %}
+{% load staticfiles %}
+
+{% load avatar_tags %}
+
+{% block body %}
+ 
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<link href="{{ STATIC_URL}}css/feeder.css" rel="stylesheet">
+<link href="{{ STATIC_URL}}css/basic.css" rel="stylesheet">
+<link href="{{ STATIC_URL}}css/bootstrap_override.css" rel="stylesheet">
+
+
+<style type="text/css">
+    .modal{
+      width: 960px;
+      height: 600px;
+      margin-left: -40%;
+      margin-bottom: 3px;
+    }
+    .modal-lg{
+        width: 960px;
+        
+    }
+
+    .modal-body{
+        margin-left: 5%;
+        max-height: 500px;
+    }
+
+    /*hack alert*/
+    input[type="file"] 
+    {
+      height: 22px;
+      line-height: 0px;
+    }
+
+    input, textarea, .uneditable-input {
+      padding-top: 5px;
+      margin-left: 0;
+    }
+</style>
+
+
+<!-- Modal -->
+<div class="modal fade" id="lyricsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="display:none" data-focus-on="input:first">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add Lyrics</h4>
+      </div>
+      <div class="modal-body">
+      <form method='POST' action="{%  url  "upload_lyrics" %}" class="form-horizontal" style='border-bottom:0'>
+            {% csrf_token %}
+            <label><b class='carret'>Title</b></label>
+            <input type="text" class="input-medium search-query" name='title'> </br></br>
+            <label><b class='carret'>Content</b></label>
+            <textarea rows='14' column="100" style="width:700px" name='lyrics_content'> </textarea></br></br>
+            <label>Tags</label>
+            <!-- hack alert! -->
+            <input type="text" style="margin-bottom;width:400px" class="input-medium search-query" name='lyrics_tag'>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="submit()">Publish!</button>
+      </div>
+      </form>
+   
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="musicModal" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add Composition</h4>
+      </div>
+      <div class="modal-body">
+      <form class="form-horizontal" style='border-bottom:0'>
+
+            <label><b class='carret'>Title</b></label>
+            <input type="text" class="input-medium search-query"> </br></br>
+            <label><b class='carret'>Upload</b></label>
+            <input type="file" class = 'btn' ></br></br>
+            <label>Auther</label>
+            <input type="text" class="input-medium"> </br></br>
+            <label  style="width:800px">Comments</label>
+            <textarea rows="5" cols="25"> </textarea></br></br>
+            <label>Tags</label>
+            <!-- Hack alert -->
+            <input type="text" style="margin-bottom:60px;width:400px" class="input-medium search-query">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Publish!</button>
+      </div>
+      </form>
+      
+    </div>
+  </div> 
+</div>
+
+
+<!-- Wrapper starts -->
+<div class="wrapper">
+<!-- sidebar -->
+  <div class="fixed_left" id="sidebar">
+  <!-- In memory of prateek -->
+    
+                 
+                  <ul class="nav hidden-xs" id="lg-menu">
+                      <div class='pic_div'>
+                        <li id='pic'>{% avatar cur_user 80 %} </li>
+                      </div>
+
+                      <div class='stats'>
+                        <li><a href="#"> {{ cur_user.first_name }}</a> </li>
+                        <li class="active"><a href="/home/followers/{{cur_user.pk}}"><i class="glyphicon glyphicon-list-alt"></i> Followers</a></li>
+                        <li><a href="/home/following/{{cur_user.pk}}"><i class="glyphicon glyphicon-list"></i> Following</a></li>
+                        <li><a href="{% url 'my_activities' %}"><i class="glyphicon glyphicon-paperclip"></i> My Activities </a></li>
+                      </div>
+
+                 </ul>
+                         
+  </div>
+  <!-- sidebar ends -->
+
+<!-- 
+  <a href=" /upload/show_lyrics/{{that_action.target.pk}}">{{ that_action.target }} </a> {{that_action.action_object|default_if_none:""}} {{ that_action.timesince }} ago</p> -->
+  
+  <div class="santhe_stream">
+
+  {% if activity_set %}
+
+    {% for that_action in activity_set %}
+
+    <p class="activity_wrapper"> 
+    <a href=" {{ that_action.actor_url }} "> {{that_action.actor}} </a> {{ that_action.verb }}  <a href=" {{ that_action.target_url }} ">{{ that_action.target }} </a> {{that_action.action_object|default_if_none:""}} {{ that_action.timesince }} ago
+
+    {% endfor %}
+  {% else %}
+
+     <p style="margin-top:65px"> No Activities Found :( </p>
+     <h3 style="margin-bottom:500px"> Start Exploring  More!! </h3>
+
+  {% endif %}
+
+  </div>
+
+
+
+
+</div>
+<!-- Wrapper ends  -->
+
+
+<div id="clearer" style="clear:both">
+</div>
+{% endblock%}
+
+
+
+
+{% block extra_body_base %}
+    
+    {% analytics %}
+    {% block extra_body %}
+    {% endblock %}
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('input[type=file]').bootstrapFileInput();
+      });
+    </script>
+
+{% endblock %}

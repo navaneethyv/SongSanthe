@@ -1,0 +1,15 @@
+{% load account_tags %}
+{% load avatar_tags %}
+<div class="span3 suggestion">
+      <div >{% avatar suggestion.to_user 80 %} </div>
+      <h4 class="media-heading">{% user_display suggestion.to_user %}</h4>
+      <div class="suggestion_button">
+          <div data-replace-closest=".suggestion" class="ajax btn btn-mini btn-primary">
+            <div data-url="{% url "ajax_request_suggestion" suggestion.pk %}" class='ajax_request'>Follow</div>
+          </div>
+          
+          <div data-replace-closest=".suggestion" class="ajax btn btn-mini ">
+            <div data-url="{% url "ajax_ignore_suggestion" suggestion.pk %}" class='ajax_ignore'>Ignore </div>
+          </div>
+      </div>
+</div>

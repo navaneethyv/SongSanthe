@@ -1,0 +1,20 @@
+Django==1.5.1
+pinax-theme-bootstrap==3.0a11
+django-user-accounts==1.0b14
+django-forms-bootstrap==2.0.3.post1
+metron==1.1
+django-social-auth==0.7.23
+twitter==1.9.4
+requests==1.2.3
+django-celery==3.0.17
+redis==2.7.5
+south==0.8.4
+django-activity-stream==0.4.4
+django-jsonfield==0.9.12
+django-extensions
+django-endless-pagination==2.0
+
+#add ons
+#to generate schema from models.py
+#django_extensions
+#pydot, pygraphviz

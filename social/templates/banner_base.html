@@ -1,0 +1,39 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block body %}
+    <div class="hero-unit">
+    {% block banner %}
+        <h1>Hoi, Namaskaara:)</h1>
+        <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    {% endblock %}
+    </div>
+    
+    <div class="row">
+        <div class="span4">
+        {% block column-1 %}
+            <h2>Write</h2>
+            <p>
+                <div style='text-decoration:line-through;float:left;margin-right:2px'>(Pen)</div> Type your thoughts in the form of lyrics
+            </p>
+            <!-- <p><a class="btn" href="#">View details &raquo;</a></p> -->
+        {% endblock %}
+        </div>
+        <div class="span4">
+        {% block column-2 %}
+            <h2>Listen</h2>
+            <p>Explore wide variety of brand new music from all over the world</p>
+            <!-- <p><a class="btn" href="#">View details &raquo;</a></p> -->
+        {% endblock %}
+        </div>
+        <div class="span4">
+        {% block column-3 %}
+            <h2>Create</h2>
+            <p>Tailered For Music Creaters</p>
+            <!-- <p><a class="btn" href="#">View details &raquo;</a></p> -->    
+        {% endblock %}
+        </div>
+    </div>
+{% endblock %}

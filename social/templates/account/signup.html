@@ -1,0 +1,72 @@
+{% extends "site_base.html" %}
+
+{% load bootstrap_tags %}
+{% load staticfiles %}
+
+{% block head_title %}Login / Signup{% endblock %}
+
+{% block body %}
+
+<style type="text/css">
+
+.navbar-default {
+    background-color: black;
+    border-color: black;
+}
+
+
+.btn-custom {
+  background-color: hsl(207, 77%, 60%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c8e2f7", endColorstr="#4aa0e7");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#c8e2f7), to(#4aa0e7));
+  background-image: -moz-linear-gradient(top, #c8e2f7, #4aa0e7);
+  background-image: -ms-linear-gradient(top, #c8e2f7, #4aa0e7);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c8e2f7), color-stop(100%, #4aa0e7));
+  background-image: -webkit-linear-gradient(top, #c8e2f7, #4aa0e7);
+  background-image: -o-linear-gradient(top, #c8e2f7, #4aa0e7);
+  background-image: linear-gradient(#c8e2f7, #4aa0e7);
+  border-color: #4aa0e7 #4aa0e7 hsl(207, 77%, 53%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.46);
+  -webkit-font-smoothing: antialiased;
+  width: 250px;
+}
+
+.center {
+    text-align:left;
+    padding-top: 5em;
+    padding-bottom: 38%;
+}
+
+body
+{
+
+    background-image: url("{{ STATIC_URL }}images/background.jpeg");
+}
+
+
+
+</style>
+
+
+<div id='boxed'>
+<div class="center" >
+<form>
+    <legend style="color:white">Sign In!!</legend>
+    {{ form|as_bootstrap }}
+    <p>
+        <a class="btn btn-default btn-large" href="{% url "socialauth_begin" "facebook" %}" target="_top">Sign in with <b>Facebook</b></a>
+    </p>
+    <p>
+        <a class="btn btn-default btn-large" href="{% url "socialauth_begin" "google-oauth2" %}" target="_top">Sign in with <b>Google</b></a>
+    </p>
+<!--     <p>
+        <a class="btn btn-default btn-large" href="{% url "socialauth_begin" "twitter" %}" target="_top">Sign in with <b>Twitter</b></a>
+    </p>  -->  
+</form>
+ 
+</div>  
+</div>  
+
+{% endblock %}
